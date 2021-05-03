@@ -1,0 +1,31 @@
+syntax = "proto3";
+package JIeeiroSst.blog.blog;
+
+option go_package = "github.com/JIeeiroSst/blog/x/blog/types";
+
+import "gogoproto/gogo.proto";
+
+message Posts {
+  string creator = 1;
+  string id = 2;
+  string title = 3; 
+  string body = 4; 
+}
+
+message MsgCreatePosts {
+  string creator = 1;
+  string title = 2; 
+  string body = 3; 
+}
+
+message MsgUpdatePosts {
+  string creator = 1;
+  string id = 2;
+  string title = 3; 
+  string body = 4; 
+}
+
+message MsgDeletePosts {
+  string creator = 1;
+  string id = 2;
+}

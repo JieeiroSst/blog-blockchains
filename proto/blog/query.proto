@@ -4,12 +4,36 @@ package JIeeiroSst.blog.blog;
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 // this line is used by starport scaffolding # 1
+import "blog/posts.proto";
 
 option go_package = "github.com/JIeeiroSst/blog/x/blog/types";
 
 // Query defines the gRPC querier service.
 service Query {
     // this line is used by starport scaffolding # 2
+	rpc Posts(QueryGetPostsRequest) returns (QueryGetPostsResponse) {
+		option (google.api.http).get = "/JIeeiroSst/blog/blog/posts/{id}";
+	}
+	rpc PostsAll(QueryAllPostsRequest) returns (QueryAllPostsResponse) {
+		option (google.api.http).get = "/JIeeiroSst/blog/blog/posts";
+	}
+
 }
 
 // this line is used by starport scaffolding # 3
+message QueryGetPostsRequest {
+	string id = 1;
+}
+
+message QueryGetPostsResponse {
+	Posts Posts = 1;
+}
+
+message QueryAllPostsRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPostsResponse {
+	repeated Posts Posts = 1;
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
